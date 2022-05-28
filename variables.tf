@@ -1,0 +1,2 @@
+# Provider variables
+variable "region" {}

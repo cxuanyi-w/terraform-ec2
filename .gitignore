@@ -1,0 +1,11 @@
+*.zip
+.terraform.lock.hcl
+/.terraform
+terraform.tfstate
+secrets_vars.tf
+accessToken.txt
+accesskey
+accesskey.pub
+.terraform.tfstate.lock.info
+terraform.tfstate.backup
+env
