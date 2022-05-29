@@ -63,6 +63,14 @@ resource "aws_security_group" "private-ec2-sg" {
     description = "allow ping"
   }
 
+  ingress {
+    cidr_blocks = ["192.168.0.0/24"]
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    description = "allow ping"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -85,19 +93,11 @@ resource "aws_instance" "public-ec2" {
   #   --instance-initiated-shutdown-behavior terminate
 
   provisioner "local-exec" {
-    command = "cd ${path.module}"
-  }
-
-  provisioner "local-exec" {
-    command = "rm -f ${path.module}/ec2-key-terraform-${var.x}-temp.pem"
-  }
-
-  provisioner "local-exec" {
-    command = "cp ${path.module}/ec2-key-terraform-${var.x}.pem ${path.module}/ec2-key-terraform-${var.x}-temp.pem"
-  }
-
-  provisioner "local-exec" {
-    command = "chmod 400 ${path.module}/ec2-key-terraform-${var.x}.pem"
+    command = <<EOT
+      rm -f ~/_Development/access_keys/ec2-key-terraform-${var.x}.pem
+      cp ${path.module}/ec2-key-terraform-${var.x}.pem ~/_Development/access_keys
+      chmod 400 ${path.module}/ec2-key-terraform-${var.x}.pem
+    EOT
   }
 
   provisioner "file" {
