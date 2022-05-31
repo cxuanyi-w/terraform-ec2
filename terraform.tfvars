@@ -1,1 +1,6 @@
-region = "ap-southeast-1"
+input-region              = "ap-southeast-1"
+input-x                   = "5"
+input-vpc_id              = "vpc-0ab093f7aca0bced6"
+input-public_subnet_id    = "subnet-01e995f3333a97e38"
+input-private_subnet_id_1 = "subnet-0288deabc5bf3dbfe"
+input-private_subnet_id_2 = "subnet-09d32e152df094af3"
